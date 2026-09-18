@@ -279,10 +279,18 @@ html_template = """<!DOCTYPE html>
     <a href="/" class="logo">
       <img src="/images/brand_logo.svg" alt="AE Interactive" style="height: 44px; width: auto; object-fit: contain;">
     </a>
-    <div class="nav-links">
-      <a href="#apps">{t[nav_apps]}</a>
-      <a href="#philosophy">{t[nav_philosophy]}</a>
-      <a href="mailto:support@appengine.fun">{t[nav_contact]}</a>
+    <div class="nav-right" style="display: flex; align-items: center; gap: 30px;">
+      <div class="nav-links">
+        <a href="#apps">{t[nav_apps]}</a>
+        <a href="#philosophy">{t[nav_philosophy]}</a>
+        <a href="mailto:support@appengine.fun">{t[nav_contact]}</a>
+      </div>
+      <div class="lang-picker" style="display: flex; gap: 12px; font-size: 13px; font-weight: 600;">
+        <a href="/?lang=en" style="color: { 'var(--text-main)' if lang_code == 'en' else 'var(--text-muted)' }; text-decoration: none;">EN</a>
+        <a href="/?lang=zh-Hant" style="color: { 'var(--text-main)' if lang_code == 'zh-Hant' else 'var(--text-muted)' }; text-decoration: none;">繁中</a>
+        <a href="/?lang=zh-Hans" style="color: { 'var(--text-main)' if lang_code == 'zh-Hans' else 'var(--text-muted)' }; text-decoration: none;">简中</a>
+        <a href="/?lang=es" style="color: { 'var(--text-main)' if lang_code == 'es' else 'var(--text-muted)' }; text-decoration: none;">ES</a>
+      </div>
     </div>
   </nav>
 
@@ -335,12 +343,6 @@ html_template = """<!DOCTYPE html>
 
   <footer>
     {t[footer_rights]}
-    <div style="margin-top: 24px; display: flex; justify-content: center; gap: 16px; font-size: 13px;">
-      <a href="/?lang=en" style="color: var(--text-muted); text-decoration: none;">English</a>
-      <a href="/?lang=zh-Hant" style="color: var(--text-muted); text-decoration: none;">繁體中文</a>
-      <a href="/?lang=zh-Hans" style="color: var(--text-muted); text-decoration: none;">简体中文</a>
-      <a href="/?lang=es" style="color: var(--text-muted); text-decoration: none;">Español</a>
-    </div>
   </footer>
 </body>
 </html>"""
