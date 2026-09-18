@@ -107,6 +107,51 @@ html_template = """<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>{t[title]}</title>
   <meta name="description" content="{t[hero_sub]}">
+  
+  <!-- Canonical & Multilingual SEO -->
+  <link rel="canonical" href="https://appengine.fun/?lang={lang_code}">
+  <link rel="alternate" hreflang="en" href="https://appengine.fun/?lang=en">
+  <link rel="alternate" hreflang="zh-Hant" href="https://appengine.fun/?lang=zh-Hant">
+  <link rel="alternate" hreflang="zh-Hans" href="https://appengine.fun/?lang=zh-Hans">
+  <link rel="alternate" hreflang="es" href="https://appengine.fun/?lang=es">
+  <link rel="alternate" hreflang="x-default" href="https://appengine.fun/">
+
+  <!-- Open Graph / Social Media Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AE Interactive">
+  <meta property="og:url" content="https://appengine.fun/?lang={lang_code}">
+  <meta property="og:title" content="{t[title]}">
+  <meta property="og:description" content="{t[hero_sub]}">
+  <meta property="og:image" content="https://appengine.fun/images/brand_logo.png">
+  <meta property="og:image:width" content="660">
+  <meta property="og:image:height" content="544">
+  <meta property="og:image:alt" content="AE Interactive Logo">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{t[title]}">
+  <meta name="twitter:description" content="{t[hero_sub]}">
+  <meta name="twitter:image" content="https://appengine.fun/images/brand_logo.png">
+  
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "AE Interactive",
+    "url": "https://appengine.fun/?lang={lang_code}",
+    "logo": "https://appengine.fun/images/brand_logo.png",
+    "description": "{t[hero_sub]}",
+    "owns": [
+      {{
+        "@type": "Product",
+        "name": "Workout Timer",
+        "url": "https://workout.appengine.fun/?lang={lang_code}"
+      }}
+    ]
+  }}
+  </script>
+  <meta name="description" content="{t[hero_sub]}">
   <style>
     :root {{
       --bg-color: #000000;

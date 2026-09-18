@@ -26,6 +26,27 @@ with open(os.path.join(base_dir, "public", "index_zh-Hans.html"), "r", encoding=
 with open(os.path.join(base_dir, "public", "index_es.html"), "r", encoding="utf-8") as f:
     PAGES["es"] = f.read()
 
+
+sitemap_xml = """<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://appengine.fun/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://appengine.fun/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://appengine.fun/?lang=zh-Hant"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://appengine.fun/?lang=zh-Hans"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://appengine.fun/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://appengine.fun/"/>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>
+"""
+
+robots_txt = """User-agent: *
+Allow: /
+Sitemap: https://appengine.fun/sitemap.xml
+"""
+
 worker_js = f"""
 const IMAGES = {json.dumps(IMAGES)};
 const PAGES = {json.dumps(PAGES)};
@@ -58,6 +79,18 @@ export default {{
   async fetch(request, env, ctx) {{
     const url = new URL(request.url);
     const pathname = url.pathname;
+
+    if (pathname === "/sitemap.xml") {{
+      return new Response(`{sitemap_xml}`, {{
+        headers: {{ "content-type": "application/xml", "cache-control": "public, max-age=86400" }}
+      }});
+    }}
+    
+    if (pathname === "/robots.txt") {{
+      return new Response(`{robots_txt}`, {{
+        headers: {{ "content-type": "text/plain", "cache-control": "public, max-age=86400" }}
+      }});
+    }}
 
     if (pathname.startsWith("/images/")) {{
       const filename = pathname.replace("/images/", "");
