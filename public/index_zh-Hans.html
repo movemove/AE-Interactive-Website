@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>AE Interactive | 打造极致数字互动体验</title>
+  <meta name="description" content="专注于 iOS 原生性能、绝对隐私与零干扰设计的独立开发团队。">
+  <style>
+    :root {
+      --bg-color: #000000;
+      --card-bg: #1c1c1e;
+      --text-main: #f5f5f7;
+      --text-muted: #86868b;
+      --primary-green: #30d158;
+      --accent-blue: #0a84ff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    
+    /* Navbar */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      position: fixed;
+      top: 0; width: 100%;
+      background: rgba(0,0,0,0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 100;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .logo {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav-links { display: flex; gap: 30px; }
+    .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-muted); transition: color 0.3s; }
+    .nav-links a:hover { color: var(--text-main); }
+
+    /* Hero */
+    .hero {
+      padding: 180px 24px 100px;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-size: clamp(48px, 8vw, 80px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, #fff 0%, #a1a1a6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 21px;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 24px 120px;
+    }
+    .section-title {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    /* Apps Showcase */
+    .app-card {
+      background: var(--card-bg);
+      border-radius: 32px;
+      padding: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.05);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 80px;
+    }
+    .app-card::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle at top, rgba(48,209,88,0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .tag {
+      background: rgba(48,209,88,0.2);
+      color: var(--primary-green);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+    .app-title { font-size: 40px; font-weight: 800; margin-bottom: 8px; }
+    .app-subtitle { font-size: 24px; font-weight: 600; color: var(--text-muted); margin-bottom: 24px; }
+    .app-desc { font-size: 18px; color: var(--text-muted); max-width: 500px; margin-bottom: 40px; }
+    .btn {
+      background: var(--text-main);
+      color: var(--bg-color);
+      padding: 16px 32px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 16px;
+      transition: transform 0.2s, opacity 0.2s;
+      display: inline-block;
+    }
+    .btn:hover { transform: scale(1.02); opacity: 0.9; }
+
+    /* Bento Grid (Philosophy) */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .bento-card {
+      background: var(--card-bg);
+      border-radius: 24px;
+      padding: 40px;
+      border: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      min-height: 250px;
+    }
+    .bento-card h3 { font-size: 24px; font-weight: 700; margin-bottom: 12px; }
+    .bento-card p { color: var(--text-muted); font-size: 16px; }
+    .bento-icon { font-size: 40px; margin-bottom: auto; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 60px 40px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .bento-grid { grid-template-columns: 1fr; }
+      .app-card { padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/" class="logo">
+      <img src="/images/brand_logo.png" alt="AE Interactive" style="height: 44px; width: auto; object-fit: contain;">
+    </a>
+    <div class="nav-links">
+      <a href="#apps">产品</a>
+      <a href="#philosophy">理念</a>
+      <a href="mailto:support@appengine.fun">联系我们</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div style="display: flex; justify-content: center; margin-bottom: 32px;">
+        <img src="/images/brand_logo.png" alt="AE Interactive Logo" style="height: 180px; width: auto; filter: drop-shadow(0 0 40px rgba(48,209,88,0.4));">
+    </div>
+    <h1>打造极致的<br>数字互动体验</h1>
+    <p>专注于 iOS 原生性能、绝对隐私与零干扰设计的独立开发团队。</p>
+  </section>
+
+  <div class="container" id="apps">
+    <div class="section-title">旗下产品</div>
+    
+    <div class="app-card">
+      <div class="tag">主打产品</div>
+      <div class="app-title">Workout Timer</div>
+      <div class="app-subtitle">真人语音健身计时</div>
+      <p class="app-desc">次世代高强度间歇计时器，搭载多国语言录音室真人教练、Apple Watch 同步与 100% 离线隐私。</p>
+      <!-- Real App Store Link would go here -->
+      <a href="#" class="btn">在 App Store 下载</a>
+    </div>
+  </div>
+
+  <div class="container" id="philosophy">
+    <div class="section-title">核心理念</div>
+    <div class="bento-grid">
+      <div class="bento-card">
+        <div class="bento-icon">🔒</div>
+        <h3>100% 绝对隐私</h3>
+        <p>免注册、无广告、无追踪器。您的健康数据绝对保密，仅存于设备本机。</p>
+      </div>
+      <div class="bento-card">
+        <div class="bento-icon">⚡️</div>
+        <h3>原生流畅性能</h3>
+        <p>纯 Swift 原生打造，完美整合灵动岛与 iOS 最新硬件加速技术。</p>
+      </div>
+      <div class="bento-card">
+        <div class="bento-icon">🌍</div>
+        <h3>生而全球化</h3>
+        <p>从第一天起就支持多国语系，为全球使用者打造深度的本地化体验。</p>
+      </div>
+      <div class="bento-card">
+        <div class="bento-icon">💎</div>
+        <h3>零干扰设计</h3>
+        <p>我们尊重您的注意力。拒绝弹窗疲劳，专注于解决痛点的纯净界面。</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    © 2026 AE Interactive. 保留所有权利。
+  </footer>
+</body>
+</html>
