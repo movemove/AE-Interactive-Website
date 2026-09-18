@@ -14,7 +14,7 @@ languages = {
         "app1_title": "Workout Timer",
         "app1_subtitle": "Voice Coach",
         "app1_desc": "The ultimate high-intensity interval timer featuring real studio voice coaches, Apple Watch sync, and 100% offline privacy.",
-        "btn_appstore": "Download on the App Store",
+        "btn_appstore": "Learn More",
         "phil_title": "Our Philosophy",
         "phil_1_title": "100% Privacy",
         "phil_1_desc": "No accounts. No ads. No trackers. Your data stays on your device.",
@@ -38,7 +38,7 @@ languages = {
         "app1_title": "Workout Timer",
         "app1_subtitle": "真人語音健身計時",
         "app1_desc": "次世代高強度間歇計時器，搭載多國語言錄音室真人教練、Apple Watch 同步與 100% 離線隱私。",
-        "btn_appstore": "在 App Store 下載",
+        "btn_appstore": "了解更多",
         "phil_title": "核心理念",
         "phil_1_title": "100% 絕對隱私",
         "phil_1_desc": "免註冊、無廣告、無追蹤器。您的健康數據絕對保密，僅存於設備本機。",
@@ -62,7 +62,7 @@ languages = {
         "app1_title": "Workout Timer",
         "app1_subtitle": "真人语音健身计时",
         "app1_desc": "次世代高强度间歇计时器，搭载多国语言录音室真人教练、Apple Watch 同步与 100% 离线隐私。",
-        "btn_appstore": "在 App Store 下载",
+        "btn_appstore": "了解更多",
         "phil_title": "核心理念",
         "phil_1_title": "100% 绝对隐私",
         "phil_1_desc": "免注册、无广告、无追踪器。您的健康数据绝对保密，仅存于设备本机。",
@@ -86,7 +86,7 @@ languages = {
         "app1_title": "Workout Timer",
         "app1_subtitle": "Voice Coach",
         "app1_desc": "El temporizador de intervalos definitivo con entrenadores de voz reales, sincronización con Apple Watch y privacidad 100% offline.",
-        "btn_appstore": "Descargar en el App Store",
+        "btn_appstore": "Saber Más",
         "phil_title": "Nuestra Filosofía",
         "phil_1_title": "100% Privacidad",
         "phil_1_desc": "Sin cuentas. Sin anuncios. Sin rastreadores. Tus datos se quedan en tu dispositivo.",
@@ -305,14 +305,13 @@ html_template = """<!DOCTYPE html>
   <div class="container" id="apps">
     <div class="section-title">{t[apps_title]}</div>
     
-    <div class="app-card">
+    <a href="https://workout.appengine.fun/?lang={lang_code}" class="app-card" style="text-decoration: none; display: block; color: inherit; cursor: pointer; transition: transform 0.2s ease;">
       <div class="tag">{t[app1_tag]}</div>
       <div class="app-title">{t[app1_title]}</div>
       <div class="app-subtitle">{t[app1_subtitle]}</div>
       <p class="app-desc">{t[app1_desc]}</p>
-      <!-- Real App Store Link would go here -->
-      <a href="#" class="btn">{t[btn_appstore]}</a>
-    </div>
+      <div class="btn">{t[btn_appstore]}</div>
+    </a>
   </div>
 
   <div class="container" id="philosophy">
