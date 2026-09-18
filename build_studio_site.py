@@ -296,7 +296,7 @@ html_template = """<!DOCTYPE html>
 
   <section class="hero">
     <div style="display: flex; justify-content: center; margin-bottom: 32px;">
-        <img src="/images/brand_logo.png" alt="AE Interactive Logo" style="height: 120px; width: auto; filter: drop-shadow(0 0 40px rgba(48,209,88,0.4));">
+        <img src="/images/brand_logo.png" alt="AE Interactive Logo" style="height: 160px; width: auto; filter: drop-shadow(0 0 40px rgba(48,209,88,0.4));">
     </div>
     <h1>{t[hero_headline]}</h1>
     <p>{t[hero_sub]}</p>
