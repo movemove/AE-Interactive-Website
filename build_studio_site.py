@@ -277,7 +277,7 @@ html_template = """<!DOCTYPE html>
 <body>
   <nav>
     <a href="/" class="logo">
-      <img src="/images/brand_logo.png" alt="AE Interactive" style="height: 44px; width: auto; object-fit: contain;">
+      <img src="/images/brand_logo.svg" alt="AE Interactive" style="height: 44px; width: auto; object-fit: contain;">
     </a>
     <div class="nav-links">
       <a href="#apps">{t[nav_apps]}</a>
@@ -288,7 +288,7 @@ html_template = """<!DOCTYPE html>
 
   <section class="hero">
     <div style="display: flex; justify-content: center; margin-bottom: 32px;">
-        <img src="/images/brand_logo.png" alt="AE Interactive Logo" style="height: 180px; width: auto; filter: drop-shadow(0 0 40px rgba(48,209,88,0.4));">
+        <img src="/images/brand_logo.svg" alt="AE Interactive Logo" style="height: 180px; width: auto; filter: drop-shadow(0 0 40px rgba(48,209,88,0.4));">
     </div>
     <h1>{t[hero_headline]}</h1>
     <p>{t[hero_sub]}</p>
@@ -335,6 +335,12 @@ html_template = """<!DOCTYPE html>
 
   <footer>
     {t[footer_rights]}
+    <div style="margin-top: 24px; display: flex; justify-content: center; gap: 16px; font-size: 13px;">
+      <a href="/?lang=en" style="color: var(--text-muted); text-decoration: none;">English</a>
+      <a href="/?lang=zh-Hant" style="color: var(--text-muted); text-decoration: none;">繁體中文</a>
+      <a href="/?lang=zh-Hans" style="color: var(--text-muted); text-decoration: none;">简体中文</a>
+      <a href="/?lang=es" style="color: var(--text-muted); text-decoration: none;">Español</a>
+    </div>
   </footer>
 </body>
 </html>"""
