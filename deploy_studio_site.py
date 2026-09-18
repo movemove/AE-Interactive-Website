@@ -63,9 +63,10 @@ export default {{
       const filename = pathname.replace("/images/", "");
       if (IMAGES[filename]) {{
         const bytes = base64ToUint8Array(IMAGES[filename]);
+        const contentType = filename.endsWith(".svg") ? "image/svg+xml" : "image/png";
         return new Response(bytes, {{
           headers: {{
-            "content-type": "image/png",
+            "content-type": contentType,
             "cache-control": "public, max-age=31536000, immutable"
           }}
         }});
