@@ -277,7 +277,7 @@ html_template = """<!DOCTYPE html>
 <body>
   <nav>
     <a href="/" class="logo">
-      <img src="/images/brand_logo.svg" alt="AE Interactive" style="height: 44px; width: auto; object-fit: contain;">
+      <img src="/images/brand_logo.png" alt="AE Interactive" style="height: 44px; width: auto; object-fit: contain;">
     </a>
     <div class="nav-right" style="display: flex; align-items: center; gap: 30px;">
       <div class="nav-links">
@@ -286,17 +286,17 @@ html_template = """<!DOCTYPE html>
         <a href="mailto:support@appengine.fun">{t[nav_contact]}</a>
       </div>
       <div class="lang-picker" style="display: flex; gap: 12px; font-size: 13px; font-weight: 600;">
-        <a href="/?lang=en" style="color: { 'var(--text-main)' if lang_code == 'en' else 'var(--text-muted)' }; text-decoration: none;">EN</a>
-        <a href="/?lang=zh-Hant" style="color: { 'var(--text-main)' if lang_code == 'zh-Hant' else 'var(--text-muted)' }; text-decoration: none;">繁中</a>
-        <a href="/?lang=zh-Hans" style="color: { 'var(--text-main)' if lang_code == 'zh-Hans' else 'var(--text-muted)' }; text-decoration: none;">简中</a>
-        <a href="/?lang=es" style="color: { 'var(--text-main)' if lang_code == 'es' else 'var(--text-muted)' }; text-decoration: none;">ES</a>
+        <a href="/?lang=en" style="color: {c_en}; text-decoration: none;">EN</a>
+        <a href="/?lang=zh-Hant" style="color: {c_zh_hant}; text-decoration: none;">繁中</a>
+        <a href="/?lang=zh-Hans" style="color: {c_zh_hans}; text-decoration: none;">简中</a>
+        <a href="/?lang=es" style="color: {c_es}; text-decoration: none;">ES</a>
       </div>
     </div>
   </nav>
 
   <section class="hero">
     <div style="display: flex; justify-content: center; margin-bottom: 32px;">
-        <img src="/images/brand_logo.svg" alt="AE Interactive Logo" style="height: 180px; width: auto; filter: drop-shadow(0 0 40px rgba(48,209,88,0.4));">
+        <img src="/images/brand_logo.png" alt="AE Interactive Logo" style="height: 120px; width: auto; filter: drop-shadow(0 0 40px rgba(48,209,88,0.4));">
     </div>
     <h1>{t[hero_headline]}</h1>
     <p>{t[hero_sub]}</p>
@@ -349,22 +349,19 @@ html_template = """<!DOCTYPE html>
 
 os.makedirs("public", exist_ok=True)
 
-# Generate index.html (Default to EN)
-with open("public/index.html", "w", encoding="utf-8") as f:
-    f.write(html_template.format(lang_code="en", t=languages["en"]))
 
-# Generate ZH-Hant
-with open("public/index_zh-Hant.html", "w", encoding="utf-8") as f:
-    f.write(html_template.format(lang_code="zh-Hant", t=languages["zh-Hant"]))
+def gen_html(lang):
+    c_en = 'var(--text-main)' if lang == 'en' else 'var(--text-muted)'
+    c_zh_hant = 'var(--text-main)' if lang == 'zh-Hant' else 'var(--text-muted)'
+    c_zh_hans = 'var(--text-main)' if lang == 'zh-Hans' else 'var(--text-muted)'
+    c_es = 'var(--text-main)' if lang == 'es' else 'var(--text-muted)'
+    return html_template.format(lang_code=lang, t=languages[lang], c_en=c_en, c_zh_hant=c_zh_hant, c_zh_hans=c_zh_hans, c_es=c_es)
 
+with open("public/index.html", "w", encoding="utf-8") as f: f.write(gen_html("en"))
+with open("public/index_zh-Hant.html", "w", encoding="utf-8") as f: f.write(gen_html("zh-Hant"))
+with open("public/index_zh-Hans.html", "w", encoding="utf-8") as f: f.write(gen_html("zh-Hans"))
+with open("public/index_es.html", "w", encoding="utf-8") as f: f.write(gen_html("es"))
 
-# Generate ZH-Hans
-with open("public/index_zh-Hans.html", "w", encoding="utf-8") as f:
-    f.write(html_template.format(lang_code="zh-Hans", t=languages["zh-Hans"]))
-
-# Generate ES
-with open("public/index_es.html", "w", encoding="utf-8") as f:
-    f.write(html_template.format(lang_code="es", t=languages["es"]))
 
 print("Generated studio website templates.")
 

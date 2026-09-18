@@ -6,12 +6,12 @@ import urllib.request
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Read images
-logo_path = os.path.join(base_dir, "public", "brand_logo.svg")
+logo_path = os.path.join(base_dir, "public", "brand_logo.png")
 with open(logo_path, "rb") as f:
     logo_b64 = base64.b64encode(f.read()).decode('utf-8')
 
 IMAGES = {
-    "brand_logo.svg": logo_b64
+    "brand_logo.png": logo_b64
 }
 
 # Read pages
