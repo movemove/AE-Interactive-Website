@@ -144,9 +144,16 @@ html_template = """<!DOCTYPE html>
     "description": "{t[hero_sub]}",
     "owns": [
       {{
-        "@type": "Product",
+        "@type": "SoftwareApplication",
         "name": "Workout Timer",
-        "url": "https://workout.appengine.fun/?lang={lang_code}"
+        "url": "https://workout.appengine.fun/?lang={lang_code}",
+        "applicationCategory": "HealthAndFitnessApplication",
+        "operatingSystem": "iOS, watchOS",
+        "offers": {{
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }}
       }}
     ]
   }}
