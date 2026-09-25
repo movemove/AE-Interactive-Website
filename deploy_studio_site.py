@@ -5,14 +5,14 @@ import urllib.request
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
-# Read images
-logo_path = os.path.join(base_dir, "public", "brand_logo.png")
-with open(logo_path, "rb") as f:
-    logo_b64 = base64.b64encode(f.read()).decode('utf-8')
-
-IMAGES = {
-    "brand_logo.png": logo_b64
-}
+# Read all images from public
+IMAGES = {}
+public_dir = os.path.join(base_dir, "public")
+for fname in os.listdir(public_dir):
+    if fname.endswith(('.png', '.svg', '.jpg', '.jpeg', '.webp')):
+        with open(os.path.join(public_dir, fname), "rb") as f:
+            IMAGES[fname] = base64.b64encode(f.read()).decode('utf-8')
+print("Bundling images:", list(IMAGES.keys()))
 
 # Read pages
 PAGES = {}
@@ -123,7 +123,7 @@ with open("worker.js", "w", encoding="utf-8") as f:
     f.write(worker_js)
 
 import os
-token = os.environ.get("CF_API_TOKEN", "REPLACE_WITH_YOUR_TOKEN")
+token = os.environ.get("CF_API_TOKEN", "")
 account_id = "9fb3b494e6d4d659f2cf567efb94fc38"
 script_name = "aeinteractive-site"
 url = f"https://api.cloudflare.com/client/v4/accounts/{account_id}/workers/scripts/{script_name}"

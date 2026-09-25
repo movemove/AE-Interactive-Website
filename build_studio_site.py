@@ -122,16 +122,16 @@ html_template = """<!DOCTYPE html>
   <meta property="og:url" content="https://appengine.fun/?lang={lang_code}">
   <meta property="og:title" content="{t[title]}">
   <meta property="og:description" content="{t[hero_sub]}">
-  <meta property="og:image" content="https://appengine.fun/images/brand_logo.png">
-  <meta property="og:image:width" content="660">
-  <meta property="og:image:height" content="544">
+  <meta property="og:image" content="https://appengine.fun/images/brand_logo_v2.png">
+  <meta property="og:image:width" content="707">
+  <meta property="og:image:height" content="592">
   <meta property="og:image:alt" content="AE Interactive Logo">
 
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="{t[title]}">
   <meta name="twitter:description" content="{t[hero_sub]}">
-  <meta name="twitter:image" content="https://appengine.fun/images/brand_logo.png">
+  <meta name="twitter:image" content="https://appengine.fun/images/brand_logo_v2.png">
   
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -140,7 +140,7 @@ html_template = """<!DOCTYPE html>
     "@type": "Organization",
     "name": "AE Interactive",
     "url": "https://appengine.fun/?lang={lang_code}",
-    "logo": "https://appengine.fun/images/brand_logo.png",
+    "logo": "https://appengine.fun/images/brand_logo_v2.png",
     "description": "{t[hero_sub]}",
     "owns": [
       {{
@@ -328,8 +328,9 @@ html_template = """<!DOCTYPE html>
 </head>
 <body>
   <nav>
-    <a href="/" class="logo">
-      <img src="/images/brand_logo.png" alt="AE Interactive" style="height: 44px; width: auto; object-fit: contain;">
+    <a href="/" class="logo" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
+      <img src="/images/brand_icon_v2.png" alt="AE Interactive" style="height: 36px; width: auto; object-fit: contain;">
+      <span style="font-size: 19px; font-weight: 800; letter-spacing: -0.4px; color: #ffffff;">AE Interactive</span>
     </a>
     <div class="nav-right" style="display: flex; align-items: center; gap: 30px;">
       <div class="nav-links">
@@ -348,7 +349,7 @@ html_template = """<!DOCTYPE html>
 
   <section class="hero">
     <div style="display: flex; justify-content: center; margin-bottom: 32px;">
-        <img src="/images/brand_logo.png" alt="AE Interactive Logo" style="height: 160px; width: auto; filter: drop-shadow(0 0 40px rgba(48,209,88,0.4));">
+        <img src="/images/brand_logo_v2.png" alt="AE Interactive Logo" style="height: 140px; width: auto; filter: drop-shadow(0 0 35px rgba(48,209,88,0.45));">
     </div>
     <h1>{t[hero_headline]}</h1>
     <p>{t[hero_sub]}</p>
