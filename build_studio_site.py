@@ -402,18 +402,33 @@ html_template = """<!DOCTYPE html>
 os.makedirs("public", exist_ok=True)
 
 
+gtm_head = """<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W7N52ZML');</script>
+<!-- End Google Tag Manager -->"""
+
+gtm_body = """<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W7N52ZML"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->"""
+
 def gen_html(lang):
     c_en = 'var(--text-main)' if lang == 'en' else 'var(--text-muted)'
     c_zh_hant = 'var(--text-main)' if lang == 'zh-Hant' else 'var(--text-muted)'
     c_zh_hans = 'var(--text-main)' if lang == 'zh-Hans' else 'var(--text-muted)'
     c_es = 'var(--text-main)' if lang == 'es' else 'var(--text-muted)'
-    return html_template.format(lang_code=lang, t=languages[lang], c_en=c_en, c_zh_hant=c_zh_hant, c_zh_hans=c_zh_hans, c_es=c_es)
+    rendered = html_template.format(lang_code=lang, t=languages[lang], c_en=c_en, c_zh_hant=c_zh_hant, c_zh_hans=c_zh_hans, c_es=c_es)
+    rendered = rendered.replace("<head>", f"<head>\n  {gtm_head}", 1)
+    rendered = rendered.replace("<body>", f"<body>\n  {gtm_body}", 1)
+    return rendered
 
 with open("public/index.html", "w", encoding="utf-8") as f: f.write(gen_html("en"))
 with open("public/index_zh-Hant.html", "w", encoding="utf-8") as f: f.write(gen_html("zh-Hant"))
 with open("public/index_zh-Hans.html", "w", encoding="utf-8") as f: f.write(gen_html("zh-Hans"))
 with open("public/index_es.html", "w", encoding="utf-8") as f: f.write(gen_html("es"))
 
-
-print("Generated studio website templates.")
+print("Generated studio website templates with GTM-W7N52ZML.")
 
