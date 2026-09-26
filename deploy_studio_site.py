@@ -122,8 +122,10 @@ export default {{
 with open("worker.js", "w", encoding="utf-8") as f:
     f.write(worker_js)
 
-import os
 token = os.environ.get("CF_API_TOKEN", "")
+if not token and os.path.exists(os.path.expanduser("~/.cf_token")):
+    with open(os.path.expanduser("~/.cf_token"), "r") as f:
+        token = f.read().strip()
 account_id = "9fb3b494e6d4d659f2cf567efb94fc38"
 script_name = "aeinteractive-site"
 url = f"https://api.cloudflare.com/client/v4/accounts/{account_id}/workers/scripts/{script_name}"
