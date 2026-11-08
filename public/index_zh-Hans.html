@@ -20,7 +20,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>AE Interactive | 打造极致数字互动体验</title>
-  <meta name="description" content="专注于 iOS 原生性能、绝对隐私与零干扰设计的独立开发团队。">
+  <meta name="description" content="专注于 Apple 全生态系原生性能、绝对隐私与零干扰设计的独立开发团队。">
   
   <!-- Canonical & Multilingual SEO -->
   <link rel="canonical" href="https://appengine.fun/?lang=zh-Hans">
@@ -35,7 +35,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <meta property="og:site_name" content="AE Interactive">
   <meta property="og:url" content="https://appengine.fun/?lang=zh-Hans">
   <meta property="og:title" content="AE Interactive | 打造极致数字互动体验">
-  <meta property="og:description" content="专注于 iOS 原生性能、绝对隐私与零干扰设计的独立开发团队。">
+  <meta property="og:description" content="专注于 Apple 全生态系原生性能、绝对隐私与零干扰设计的独立开发团队。">
   <meta property="og:image" content="https://appengine.fun/images/brand_logo_v2.png">
   <meta property="og:image:width" content="707">
   <meta property="og:image:height" content="592">
@@ -44,7 +44,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="AE Interactive | 打造极致数字互动体验">
-  <meta name="twitter:description" content="专注于 iOS 原生性能、绝对隐私与零干扰设计的独立开发团队。">
+  <meta name="twitter:description" content="专注于 Apple 全生态系原生性能、绝对隐私与零干扰设计的独立开发团队。">
   <meta name="twitter:image" content="https://appengine.fun/images/brand_logo_v2.png">
   
   <!-- JSON-LD Structured Data -->
@@ -55,7 +55,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     "name": "AE Interactive",
     "url": "https://appengine.fun/?lang=zh-Hans",
     "logo": "https://appengine.fun/images/brand_logo_v2.png",
-    "description": "专注于 iOS 原生性能、绝对隐私与零干扰设计的独立开发团队。",
+    "description": "专注于 Apple 全生态系原生性能、绝对隐私与零干扰设计的独立开发团队。",
     "owns": [
       {
         "@type": "SoftwareApplication",
@@ -72,7 +72,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     ]
   }
   </script>
-  <meta name="description" content="专注于 iOS 原生性能、绝对隐私与零干扰设计的独立开发团队。">
+  <meta name="description" content="专注于 Apple 全生态系原生性能、绝对隐私与零干扰设计的独立开发团队。">
   <style>
     :root {
       --bg-color: #000000;
@@ -194,14 +194,62 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .btn {
       background: var(--text-main);
       color: var(--bg-color);
-      padding: 16px 32px;
+      padding: 15px 30px;
       border-radius: 30px;
-      font-weight: 600;
-      font-size: 16px;
+      font-weight: 700;
+      font-size: 15px;
       transition: transform 0.2s, opacity 0.2s;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
-    .btn:hover { transform: scale(1.02); opacity: 0.9; }
+    .btn:hover { transform: scale(1.02); opacity: 0.92; }
+    .btn-green {
+      background: var(--primary-green);
+      color: #000;
+      box-shadow: 0 8px 28px rgba(48, 209, 88, 0.35);
+    }
+    .studio-video-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      width: 100%;
+      margin-top: 40px;
+      text-align: left;
+    }
+    .studio-video-box {
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      padding: 16px;
+    }
+    .studio-video-box h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+      line-height: 1.35;
+    }
+    .studio-iframe-wrap {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      height: 0;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #000;
+    }
+    .studio-iframe-wrap iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    @media (max-width: 768px) {
+      .studio-video-grid { grid-template-columns: 1fr; }
+    }
 
     /* Bento Grid (Philosophy) */
     .bento-grid {
@@ -352,22 +400,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <img src="/images/brand_logo_v2.png" alt="AE Interactive Logo" style="height: 140px; width: auto; filter: drop-shadow(0 0 35px rgba(48,209,88,0.45));">
     </div>
     <h1>打造极致的<br>数字互动体验</h1>
-    <p>专注于 iOS 原生性能、绝对隐私与零干扰设计的独立开发团队。</p>
+    <p>专注于 Apple 全生态系原生性能、绝对隐私与零干扰设计的独立开发团队。</p>
   </section>
 
   <div class="container" id="apps">
-    <div class="section-title">旗下产品</div>
+    <div class="section-title">主打产品生态系</div>
     
     <div class="app-card" style="display: block; color: inherit;">
-      <div class="tag">主打产品</div>
+      <div class="tag">主打产品 • V1.3.1 全设备通用购买</div>
       <div class="app-title">Workout Timer</div>
-      <div class="app-subtitle">真人语音健身计时</div>
-      <p class="app-desc">次世代高强度间歇计时器，搭载多国语言录音室真人教练、Apple Watch 同步与 100% 离线隐私。</p>
-      <div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-top: 24px;">
-        <a href="https://workout.appengine.fun/?lang=zh-Hans" class="btn" style="text-decoration: none;">了解更多</a>
-        <a href="https://www.youtube.com/watch?v=w05YC97VSYc" target="_blank" rel="noopener noreferrer" class="btn btn-video-trigger" style="background: rgba(255,255,255,0.08); color: #ffffff; border: 1px solid rgba(255,255,255,0.18); text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
-          <span style="color: #ff0033;">▶</span> 观看实机演示
+      <div class="app-subtitle">真人语音健身计时 & Apple TV 4K 客厅运动钟</div>
+      <p class="app-desc" style="max-width: 680px; text-align: center;">横跨 iPhone、iPad、Apple Watch 与 Apple TV 4K 的次世代高强度间歇计时器。搭载 5 位多国语言录音室真人教练、7 大精选真人视频课表（含 UP NEXT 休息预习）、AirPods Pro 与 Apple Watch 实时心率同步，以及 100% 离线纯净隐私。</p>
+      <div style="display: flex; gap: 12px; align-items: center; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
+        <a href="https://workout.appengine.fun/?lang=zh-Hans" class="btn btn-green" style="text-decoration: none;">探索官方网站</a>
+        <a href="https://apps.apple.com/app/id6811742209" target="_blank" rel="noopener noreferrer" class="btn" style="text-decoration: none;"> App Store 下载</a>
+        <a href="https://youtu.be/Lr17qfFtyIk" data-video-id="Lr17qfFtyIk" target="_blank" rel="noopener noreferrer" class="btn btn-video-trigger" style="background: rgba(255,255,255,0.08); color: #ffffff; border: 1px solid rgba(255,255,255,0.18); text-decoration: none;">
+          <span style="color: #ff0033;">▶</span> ▶ Hannah 教练宣传片
         </a>
+        <a href="https://youtu.be/l3AbmjBSlKc" data-video-id="l3AbmjBSlKc" target="_blank" rel="noopener noreferrer" class="btn btn-video-trigger" style="background: rgba(255,255,255,0.08); color: #ffffff; border: 1px solid rgba(255,255,255,0.18); text-decoration: none;">
+          <span style="color: #ff0033;">▶</span> ▶ Dr. Elena 教练宣传片
+        </a>
+      </div>
+
+      <div style="margin-top: 44px; pt: 20px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 32px;">
+        <div style="font-size: 12px; font-weight: 800; letter-spacing: 1px; color: var(--primary-green); margin-bottom: 4px;">全新 1080P 真人教练课表宣传片</div>
+        <div class="studio-video-grid">
+          <div class="studio-video-box">
+            <h4>🔥 Hannah Lin 教练 • 10 分钟高密度核心腹肌 ＋ 方盒呼吸恢复</h4>
+            <div class="studio-iframe-wrap">
+              <iframe src="https://www.youtube-nocookie.com/embed/Lr17qfFtyIk?rel=0" title="Hannah Lin 教练 • 10 分钟高密度核心腹肌 ＋ 方盒呼吸恢复" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="studio-video-box">
+            <h4>🩺 Dr. Elena Lindqvist 物理治疗博士 • 12 分钟零颈压临床核心雕塑</h4>
+            <div class="studio-iframe-wrap">
+              <iframe src="https://www.youtube-nocookie.com/embed/l3AbmjBSlKc?rel=0" title="Dr. Elena Lindqvist 物理治疗博士 • 12 分钟零颈压临床核心雕塑" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -383,12 +453,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="bento-card">
         <div class="bento-icon">⚡️</div>
         <h3>原生流畅性能</h3>
-        <p>纯 Swift 原生打造，完美整合灵动岛与 iOS 最新硬件加速技术。</p>
+        <p>纯 Swift 原生打造，完美整合灵动岛、Apple TV 4K 与最新硬件加速技术。</p>
       </div>
       <div class="bento-card">
         <div class="bento-icon">🌍</div>
         <h3>生而全球化</h3>
-        <p>从第一天起就支持多国语系，为全球使用者打造深度的本地化体验。</p>
+        <p>从第一天起就支持多国语系，为全球使用者打造深度的本地化语音体验。</p>
       </div>
       <div class="bento-card">
         <div class="bento-icon">💎</div>
@@ -427,12 +497,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     const videoModalBackdrop = document.getElementById('videoModalBackdrop');
     const videoModalClose = document.getElementById('videoModalClose');
     const videoModalIframe = document.getElementById('videoModalIframe');
-    const youtubeEmbedUrl = "https://www.youtube-nocookie.com/embed/w05YC97VSYc?autoplay=1&rel=0";
 
     function openVideoModal(e) {
       if (e) e.preventDefault();
+      const vidId = (this && this.getAttribute && this.getAttribute('data-video-id')) || 'Lr17qfFtyIk';
       if (videoModal && videoModalIframe) {
-        videoModalIframe.src = youtubeEmbedUrl;
+        videoModalIframe.src = "https://www.youtube-nocookie.com/embed/" + vidId + "?autoplay=1&rel=0";
         videoModal.classList.add('active');
         videoModal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
