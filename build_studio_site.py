@@ -359,9 +359,12 @@ html_template = """<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>{t[title]}</title>
   <meta name="description" content="{t[hero_sub]}">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="author" content="AE Interactive">
+  <meta name="theme-color" content="#030407">
 
   <!-- Canonical & Multilingual SEO -->
-  <link rel="canonical" href="https://appengine.fun/?lang={lang_code}">
+  <link rel="canonical" href="{canonical_url}">
   <link rel="alternate" hreflang="en" href="https://appengine.fun/?lang=en">
   <link rel="alternate" hreflang="zh-Hant" href="https://appengine.fun/?lang=zh-Hant">
   <link rel="alternate" hreflang="zh-Hans" href="https://appengine.fun/?lang=zh-Hans">
@@ -373,7 +376,8 @@ html_template = """<!DOCTYPE html>
   <!-- Open Graph / Social Media Sharing -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="AE Interactive">
-  <meta property="og:url" content="https://appengine.fun/?lang={lang_code}">
+  <meta property="og:locale" content="{og_locale}">
+{og_locale_alts}  <meta property="og:url" content="{canonical_url}">
   <meta property="og:title" content="{t[title]}">
   <meta property="og:description" content="{t[hero_sub]}">
   <meta property="og:image" content="https://appengine.fun/images/brand_logo_v2.png">
@@ -382,10 +386,11 @@ html_template = """<!DOCTYPE html>
   <meta property="og:image:alt" content="AE Interactive Logo">
 
   <!-- Twitter Cards -->
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{t[title]}">
   <meta name="twitter:description" content="{t[hero_sub]}">
   <meta name="twitter:image" content="https://appengine.fun/images/brand_logo_v2.png">
+  <meta name="twitter:image:alt" content="AE Interactive Logo">
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">{schema_json}</script>
@@ -1002,6 +1007,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->"""
 
 
+OG_LOCALES = {
+    "en": "en_US",
+    "zh-Hant": "zh_TW",
+    "zh-Hans": "zh_CN",
+    "ja": "ja_JP",
+    "ko": "ko_KR",
+    "es": "es_ES",
+}
+
+
 def build_schema(lang: str) -> str:
     owns = [
         {
@@ -1011,6 +1026,7 @@ def build_schema(lang: str) -> str:
             "downloadUrl": "https://apps.apple.com/app/id6811742209",
             "applicationCategory": "HealthAndFitnessApplication",
             "operatingSystem": "iOS, iPadOS, watchOS, tvOS",
+            "isAccessibleForFree": True,
             "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
         }
     ]
@@ -1022,16 +1038,34 @@ def build_schema(lang: str) -> str:
             "downloadUrl": a["appstore"],
             "applicationCategory": "EducationApplication",
             "operatingSystem": "iOS 17.0+, iPadOS 17.0+",
+            "isAccessibleForFree": True,
             "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
         })
     return json.dumps({
         "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "AE Interactive",
-        "url": f"https://appengine.fun/?lang={lang}",
-        "logo": "https://appengine.fun/images/brand_logo_v2.png",
-        "description": languages[lang]["hero_sub"],
-        "owns": owns,
+        "@graph": [
+            {
+                "@type": "Organization",
+                "@id": "https://appengine.fun/#organization",
+                "name": "AE Interactive",
+                "url": "https://appengine.fun/",
+                "logo": "https://appengine.fun/images/brand_logo_v2.png",
+                "sameAs": [
+                    "https://www.youtube.com/@appengine-a",
+                    "https://languages.appengine.fun/",
+                ],
+                "description": languages[lang]["hero_sub"],
+                "owns": owns,
+            },
+            {
+                "@type": "WebSite",
+                "@id": "https://appengine.fun/#website",
+                "name": "AE Interactive",
+                "url": "https://appengine.fun/",
+                "inLanguage": list(LANG_ORDER),
+                "publisher": {"@id": "https://appengine.fun/#organization"},
+            },
+        ],
     }, ensure_ascii=False)
 
 
@@ -1062,8 +1096,17 @@ def build_lang_cards(lang: str) -> str:
 def gen_html(lang: str) -> str:
     colors = {f"c_{k.lower().replace('-', '_')}": ('var(--text-main)' if lang == k else 'var(--text-muted)') for k in LANG_ORDER}
     workout_lang = lang if lang in ("en", "zh-Hant", "zh-Hans", "es") else "en"
+    canonical_url = "https://appengine.fun/" if lang == "en" else f"https://appengine.fun/?lang={lang}"
+    og_locale = OG_LOCALES[lang]
+    og_locale_alts = "".join(
+        f'  <meta property="og:locale:alternate" content="{OG_LOCALES[k]}">\n'
+        for k in LANG_ORDER if k != lang
+    )
     rendered = html_template.format(
         lang_code=lang,
+        canonical_url=canonical_url,
+        og_locale=og_locale,
+        og_locale_alts=og_locale_alts,
         t=languages[lang],
         workout_lang=workout_lang,
         schema_json=build_schema(lang),

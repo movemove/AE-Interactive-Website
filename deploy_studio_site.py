@@ -21,20 +21,24 @@ for code in ("en", "zh-Hant", "zh-Hans", "ja", "ko", "es"):
     with open(os.path.join(base_dir, "public", fname), "r", encoding="utf-8") as f:
         PAGES[code] = f.read()
 
-sitemap_xml = """<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <url>
-    <loc>https://appengine.fun/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://appengine.fun/?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://appengine.fun/?lang=zh-Hant"/>
-    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://appengine.fun/?lang=zh-Hans"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://appengine.fun/?lang=ja"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://appengine.fun/?lang=ko"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://appengine.fun/?lang=es"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://appengine.fun/"/>
+_LANG_CODES = ("en", "zh-Hant", "zh-Hans", "ja", "ko", "es")
+_XHTML_LINKS = "\n".join(
+    [f'    <xhtml:link rel="alternate" hreflang="{c}" href="https://appengine.fun/?lang={c}"/>' for c in _LANG_CODES]
+    + ['    <xhtml:link rel="alternate" hreflang="x-default" href="https://appengine.fun/"/>']
+)
+_SITEMAP_URLS = "\n".join(
+    f"""  <url>
+    <loc>{"https://appengine.fun/" if c == "en" else f"https://appengine.fun/?lang={c}"}</loc>
+    <lastmod>2026-11-26</lastmod>
+{_XHTML_LINKS}
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
+    <priority>{"1.0" if c == "en" else "0.9"}</priority>
+  </url>"""
+    for c in _LANG_CODES
+)
+sitemap_xml = f"""<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+{_SITEMAP_URLS}
 </urlset>
 """
 
