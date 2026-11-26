@@ -626,11 +626,14 @@ html_template = """<!DOCTYPE html>
     .lang-mini-name {{ font-size: 16px; font-weight: 850; color: #fff; line-height: 1.2; }}
     .lang-mini-ver {{ font-size: 11px; font-weight: 750; color: var(--mini-accent, #2dd4bf); }}
     .lang-mini-sub {{ font-size: 12.5px; color: var(--text-muted); line-height: 1.4; }}
-    .lang-mini-links {{ display: flex; gap: 8px; flex-wrap: wrap; }}
+    .lang-mini-links {{ display: flex; flex-direction: column; gap: 7px; }}
     .mini-btn {{
-      flex: 1;
-      text-align: center;
-      padding: 7px 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      white-space: nowrap;
+      padding: 8px 12px;
       border-radius: 99px;
       font-size: 12px;
       font-weight: 800;
