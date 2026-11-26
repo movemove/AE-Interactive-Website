@@ -23,7 +23,7 @@ for code in ("en", "zh-Hant", "zh-Hans", "ja", "ko", "es"):
 
 _LANG_CODES = ("en", "zh-Hant", "zh-Hans", "ja", "ko", "es")
 _XHTML_LINKS = "\n".join(
-    [f'    <xhtml:link rel="alternate" hreflang="{c}" href="https://appengine.fun/?lang={c}"/>' for c in _LANG_CODES]
+    [f'    <xhtml:link rel="alternate" hreflang="{c}" href="{"https://appengine.fun/" if c == "en" else f"https://appengine.fun/?lang={c}"}"/>' for c in _LANG_CODES]
     + ['    <xhtml:link rel="alternate" hreflang="x-default" href="https://appengine.fun/"/>']
 )
 _SITEMAP_URLS = "\n".join(

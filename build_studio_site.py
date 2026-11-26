@@ -365,7 +365,7 @@ html_template = """<!DOCTYPE html>
 
   <!-- Canonical & Multilingual SEO -->
   <link rel="canonical" href="{canonical_url}">
-  <link rel="alternate" hreflang="en" href="https://appengine.fun/?lang=en">
+  <link rel="alternate" hreflang="en" href="https://appengine.fun/">
   <link rel="alternate" hreflang="zh-Hant" href="https://appengine.fun/?lang=zh-Hant">
   <link rel="alternate" hreflang="zh-Hans" href="https://appengine.fun/?lang=zh-Hans">
   <link rel="alternate" hreflang="ja" href="https://appengine.fun/?lang=ja">
